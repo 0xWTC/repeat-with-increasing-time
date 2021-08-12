@@ -29,3 +29,4 @@ if __name__ == "__main__":
 		else:
 			print(f"Result: {result}. Result isn't satisfying. Repeating...")
 			raise Exception 
+	repeater(function_that_usually_fails, retries = 10, initial_timeout = 1, double_exponential = False, debug = True)
