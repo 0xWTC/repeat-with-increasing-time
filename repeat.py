@@ -1,7 +1,7 @@
 import random
 import time
 
-def repeater(function, retries = 10, initial_timeout = 1, double_exponential = False, debug = False):
+def repeater(function, *args, retries = 10, initial_timeout = 1, double_exponential = False, debug = False):
 	"""This is an exponential time repeater"""
 	count = 0
 	if double_exponential == True:
@@ -10,7 +10,7 @@ def repeater(function, retries = 10, initial_timeout = 1, double_exponential = F
 		exponential = 1 
 	while True:
 		try:
-			return function()
+			return function(*args)
 		except:
 			sleep = (initial_timeout * 2 ** count ** exponential)
 			if debug == True:
@@ -29,5 +29,3 @@ if __name__ == "__main__":
 		else:
 			print(f"Result: {result}. Result isn't satisfying. Repeating...")
 			raise Exception 
-
-	repeater(function_that_usually_fails, retries = 10, initial_timeout = 1, double_exponential = False, debug = True)
